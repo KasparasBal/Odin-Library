@@ -22,6 +22,8 @@ function addBooksToCanvas(bookArray) {
     const authorCell = document.createElement("td");
     const yearCell = document.createElement("td");
 
+    tableRow.classList.add("table-row");
+
     titleCell.textContent = book.title;
     authorCell.textContent = book.author;
     yearCell.textContent = book.year;

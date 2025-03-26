@@ -9,7 +9,24 @@
   </head>
   <body>
     <header class="header">
-      <button class="addNewBook">Add New Book</button>
+      <div class="logo-container">
+        <img
+          class="svg"
+          src="./images/book.svg"
+          alt="book icon / logo"
+          class="logo"
+        />
+      </div>
+      <button class="addNewBook">
+        <img
+          class="svg"
+          width="32"
+          height="32"
+          src="./images/book-plus.svg"
+          alt="add new book"
+          class="logo"
+        />
+      </button>
     </header>
     <main class="main">
       <table class="book-table">
@@ -20,25 +37,9 @@
             <th>Year</th>
           </tr>
         </thead>
-        <tbody id="table-body" class="table-body">
-          <tr class="table-row">
-            <td>Harry Potter</td>
-            <td>J.K.Rowling</td>
-            <td>1953</td>
-          </tr>
-          <tr class="table-row">
-            <td>Harry Potter</td>
-            <td>J.K.Rowling</td>
-            <td>1953</td>
-          </tr>
-          <tr class="table-row">
-            <td>Harry Potter</td>
-            <td>J.K.Rowling</td>
-            <td>1953</td>
-          </tr>
-        </tbody>
+        <tbody id="table-body" class="table-body"></tbody>
       </table>
     </main>
-    <footer>Made by K.Balys</footer>
+    <footer class="footer">Made by K.Balys</footer>
   </body>
 </html>
