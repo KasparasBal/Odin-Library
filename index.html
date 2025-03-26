@@ -29,7 +29,7 @@
       </button>
     </header>
     <main class="main">
-      <table class="book-table">
+      <table id="book-table" class="book-table">
         <thead class="table-heading">
           <tr>
             <th>Title</th>
@@ -39,6 +39,46 @@
         </thead>
         <tbody id="table-body" class="table-body"></tbody>
       </table>
+      <div class="overlay"></div>
+      <div class="form-container">
+        <h2>Add a new book</h2>
+        <form action="" method="" class="form">
+          <div class="input-container">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="title"
+              minlength="1"
+              maxlength="200"
+            />
+            <div class="input-container">
+              <label for="author">Author</label>
+              <input
+                type="text"
+                name="author"
+                id="author"
+                placeholder="author"
+                minlength="1"
+                maxlength="200"
+              />
+              <div class="input-container">
+                <label for="year">Year</label>
+                <input
+                  type="date"
+                  name="year"
+                  id="year"
+                  placeholder="year"
+                  minlength="1"
+                  maxlength="200"
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="submitForm">Add Book</button>
+        </form>
+      </div>
     </main>
     <footer class="footer">Made by K.Balys</footer>
   </body>

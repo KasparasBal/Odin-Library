@@ -1,3 +1,5 @@
+const main = document.querySelector(".main");
+const bookTable = document.getElementById("book-table");
 const tableBody = document.getElementById("table-body");
 
 const myLibrary = [];
@@ -42,3 +44,11 @@ addBookToLibrary("Pride and Prejudice", 1813, "Jane Austen");
 addBookToLibrary("Dune", 1965, "Frank Herbert");
 
 addBooksToCanvas(myLibrary);
+
+if (myLibrary.length === 0) {
+  bookTable.style.display = "none";
+  const noContentWarning = document.createElement("p");
+  noContentWarning.textContent =
+    "No Books found in your library. Try adding some.";
+  main.appendChild(noContentWarning);
+}
