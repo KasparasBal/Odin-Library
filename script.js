@@ -1,4 +1,8 @@
 const main = document.querySelector(".main");
+const btnAdd = document.querySelector(".btn-add");
+const btnClose = document.querySelector(".btn-close");
+const overlay = document.querySelector(".overlay");
+const formContainer = document.querySelector(".form-container");
 const bookTable = document.getElementById("book-table");
 const tableBody = document.getElementById("table-body");
 
@@ -37,6 +41,24 @@ function addBooksToCanvas(bookArray) {
     tableBody.appendChild(tableRow);
   });
 }
+
+const closingElements = [btnAdd, overlay, btnClose];
+
+closingElements.forEach((btn) =>
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (
+      formContainer.classList.contains("display-none") &&
+      overlay.classList.contains("display-none")
+    ) {
+      formContainer.classList.remove("display-none");
+      overlay.classList.remove("display-none");
+    } else {
+      formContainer.classList.add("display-none");
+      overlay.classList.add("display-none");
+    }
+  })
+);
 
 addBookToLibrary("Harry Potter and the Sorcerer's Stone", 1997, "J.K. Rowling");
 addBookToLibrary("The Lord of the Rings", 1954, "J.R.R. Tolkien");
