@@ -8,11 +8,37 @@
     <script src="./script.js" defer></script>
   </head>
   <body>
+    <header class="header">
+      <button class="addNewBook">Add New Book</button>
+    </header>
     <main>
-      <header class="header">
-        <button class="addNewBook">Add New Book</button>
-      </header>
-      <div class="book-gallery"></div>
+      <table class="book-table">
+        <thead class="table-heading">
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody id="table-body" class="table-body">
+          <tr class="table-row">
+            <td>Harry Potter</td>
+            <td>J.K.Rowling</td>
+            <td>1953</td>
+          </tr>
+          <tr class="table-row">
+            <td>Harry Potter</td>
+            <td>J.K.Rowling</td>
+            <td>1953</td>
+          </tr>
+          <tr class="table-row">
+            <td>Harry Potter</td>
+            <td>J.K.Rowling</td>
+            <td>1953</td>
+          </tr>
+        </tbody>
+      </table>
     </main>
+    <footer>Made by K.Balys</footer>
   </body>
 </html>
