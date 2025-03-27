@@ -89,6 +89,9 @@ td {
 td {
   border-bottom: 1px solid #d1d1d1;
 }
+td:last-child {
+  gap: 50px;
+}
 tbody tr:hover {
   box-shadow: -5px 0px 0px #5038b7;
 }
@@ -135,7 +138,7 @@ tbody tr:last-child:hover {
   align-items: start;
   gap: 5px;
 }
-input {
+.input {
   text-transform: capitalize;
   padding: 10px;
   height: 50px;
@@ -144,15 +147,21 @@ input {
   outline: 2px solid #d1d1d1;
   border: none;
 }
-input:hover,
-input:active,
-input:focus {
+.form .input:valid[data-touched="true"] {
+  outline: 2px solid #38b769;
+}
+.form .input:invalid[data-touched="true"] {
+  outline: 2px solid #b73838;
+}
+.input:hover,
+.input:active,
+.input:focus {
   outline: 2px solid #5038b7;
 }
 label {
   font-size: 15px;
 }
-.submitForm {
+.btn-submit {
   cursor: pointer;
   background-color: #5038b7;
   color: #ffffff;
@@ -162,7 +171,7 @@ label {
   border: none;
   transition: 0.1s ease-in-out;
 }
-.submitForm:hover {
+.btn-submit:hover {
   background-color: #6a54cc;
 }
 .btn-close {
@@ -173,6 +182,36 @@ label {
   right: 5%;
 }
 .btn-close:hover img.svg {
+  filter: invert(20%) sepia(86%) saturate(4307%) hue-rotate(248deg)
+    brightness(92%) contrast(93%);
+}
+
+.checkbox {
+  accent-color: #6a54cc;
+}
+.btn {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.1s ease-in-out;
+}
+.btn:hover {
+  color: #6a54cc;
+  transform: scale(1.05);
+}
+.btn-trash > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-trash img {
+  width: 25px;
+  height: 25px;
+}
+.btn-trash:hover img.svg {
   filter: invert(20%) sepia(86%) saturate(4307%) hue-rotate(248deg)
     brightness(92%) contrast(93%);
 }

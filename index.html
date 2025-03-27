@@ -35,6 +35,9 @@
             <th>Title</th>
             <th>Author</th>
             <th>Year</th>
+            <th>Pages</th>
+            <th>Read</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody id="table-body" class="table-body"></tbody>
@@ -57,7 +60,10 @@
               type="text"
               name="title"
               id="title"
+              class="input"
+              required
               placeholder="title"
+              data
               minlength="1"
               maxlength="200"
             />
@@ -67,6 +73,8 @@
                 type="text"
                 name="author"
                 id="author"
+                class="input"
+                required
                 placeholder="author"
                 minlength="1"
                 maxlength="200"
@@ -74,17 +82,21 @@
               <div class="input-container">
                 <label for="year">Year</label>
                 <input
-                  type="date"
+                  type="number"
                   name="year"
+                  class="input"
+                  required
                   id="year"
                   placeholder="year"
-                  minlength="1"
-                  maxlength="200"
+                  min="1000"
+                  max="2025"
+                  step="1"
+                  value="2025"
                 />
               </div>
             </div>
           </div>
-          <button type="submit" class="submitForm">Add Book</button>
+          <button type="submit" class="btn-submit">Add Book</button>
         </form>
       </div>
     </main>
