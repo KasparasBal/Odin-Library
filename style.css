@@ -170,6 +170,7 @@ label {
   border-radius: 5px;
   border: none;
   transition: 0.1s ease-in-out;
+  margin-top: 20px;
 }
 .btn-submit:hover {
   background-color: #6a54cc;
@@ -211,9 +212,12 @@ label {
   width: 25px;
   height: 25px;
 }
-.btn-trash:hover img.svg {
+.btn:hover img {
   filter: invert(20%) sepia(86%) saturate(4307%) hue-rotate(248deg)
     brightness(92%) contrast(93%);
+}
+.btn:active {
+  transform: scale(0.95);
 }
 .display-none {
   display: None;

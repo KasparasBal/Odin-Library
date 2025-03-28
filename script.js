@@ -15,6 +15,16 @@ const readInput = document.getElementById("read");
 
 const myLibrary = [];
 
+const checkLibLength = () => {
+  if (myLibrary.length === 0) {
+    bookTable.style.display = "none";
+    const noContentWarning = document.createElement("p");
+    noContentWarning.textContent =
+      "No Books found in your library. Try adding some.";
+    main.appendChild(noContentWarning);
+  }
+};
+
 function Book(title, year, author, pages, read) {
   this.id = crypto.randomUUID();
   this.title = title;
@@ -26,7 +36,6 @@ function Book(title, year, author, pages, read) {
 
 function addBookToLibrary(title, year, author, pages, read) {
   myLibrary.push(new Book(title, year, author, pages, read));
-  console.log(myLibrary);
 }
 
 function addBooksToCanvas(bookInput) {
@@ -91,7 +100,7 @@ function addBooksToCanvas(bookInput) {
     const tableBtnDeleteImage = document.createElement("img");
     const tableBtnRead = document.createElement("input");
 
-    tableRow.setAttribute("data-id", book.id);
+    tableRow.setAttribute("data-id", bookInput.id);
 
     tableBtnRead.type = "checkbox";
     tableBtnDeleteImage.src = "./images/trash.svg";
@@ -129,6 +138,11 @@ function addBooksToCanvas(bookInput) {
   }
 }
 
+const updateCanvas = () => {
+  tableBody.innerHTML = "";
+  addBooksToCanvas(myLibrary);
+};
+
 addBookToLibrary(
   "Harry Potter and the Sorcerer's Stone",
   1997,
@@ -136,25 +150,49 @@ addBookToLibrary(
   432,
   true
 );
-addBookToLibrary("The Lord of the Rings", 1954, "J.R.R. Tolkien", 342, true);
-addBookToLibrary("Pride and Prejudice", 1813, "Jane Austen", 542, false);
-addBookToLibrary("Dune", 1965, "Frank Herbert", 232, true);
 
-addBooksToCanvas(myLibrary);
+//Find book & edit it
 
-// Removing & Editing the Books
-
-bookTable.addEventListener("click", (e) => {
-  console.log(e.target);
+bookTable.addEventListener("change", (e) => {
   if (e.target.classList.contains("checkbox")) {
-  }
-  if (e.target.classList.contains("btn-trash")) {
+    const bookToEdit = myLibrary.findIndex((book) => {
+      return book.id === closestDataId.dataset.id;
+    });
+
+    if (bookToEdit !== -1) {
+      myLibrary[bookToEdit].read = e.target.checked;
+      updateCanvas();
+      checkLibLength();
+    }
   }
 });
 
-//
+//Find book & delete it
+
+bookTable.addEventListener("click", (e) => {
+  closestDataId = e.target.closest(`[data-id]`);
+
+  if (
+    (e.target.parentElement &&
+      e.target.parentElement.tagName.toLowerCase() === "button" &&
+      e.target.parentElement.classList.contains("btn-trash")) ||
+    e.target.classList.contains("btn-trash")
+  ) {
+    const bookToRemove = myLibrary.findIndex((book) => {
+      return book.id === closestDataId.dataset.id;
+    });
+
+    if (bookToRemove !== -1) {
+      myLibrary.splice(bookToRemove, 1);
+      updateCanvas();
+      checkLibLength();
+    }
+  }
+});
 
 const closingElements = [btnAdd, overlay, btnClose];
+
+//Closing logic for modal
 
 closingElements.forEach((btn) =>
   btn.addEventListener("click", (e) => {
@@ -172,6 +210,16 @@ closingElements.forEach((btn) =>
   })
 );
 
+const clearForm = () => {
+  formInputs.forEach((input) => {
+    input.value = "";
+    input.textContent = "";
+    input.checked = false;
+    input.dataset.touched = "false";
+  });
+};
+
+//Prevent valid & unvalid style to show before user interacts
 formInputs.forEach((input) => {
   input.addEventListener("blur", () => {
     input.dataset.touched = "true";
@@ -180,6 +228,7 @@ formInputs.forEach((input) => {
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
+
   if (
     yearInput.value &&
     authorInput.value &&
@@ -191,18 +240,13 @@ btnSubmit.addEventListener("click", (e) => {
       yearInput.value,
       authorInput.value,
       pagesInput.value,
-      readInput.value
+      readInput.checked
     );
-    addBooksToCanvas(myLibrary[myLibrary.length - 1]);
+    clearForm();
+    updateCanvas();
     formContainer.classList.add("display-none");
     overlay.classList.add("display-none");
   }
 });
 
-if (myLibrary.length === 0) {
-  bookTable.style.display = "none";
-  const noContentWarning = document.createElement("p");
-  noContentWarning.textContent =
-    "No Books found in your library. Try adding some.";
-  main.appendChild(noContentWarning);
-}
+checkLibLength();
