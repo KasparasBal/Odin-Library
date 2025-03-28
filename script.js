@@ -17,11 +17,19 @@ const myLibrary = [];
 
 const checkLibLength = () => {
   if (myLibrary.length === 0) {
-    bookTable.style.display = "none";
     const noContentWarning = document.createElement("p");
+    noContentWarning.classList.add("contentWarning");
+    bookTable.style.display = "none";
     noContentWarning.textContent =
       "No Books found in your library. Try adding some.";
     main.appendChild(noContentWarning);
+  } else {
+    bookTable.style.display = "table";
+    updateCanvas();
+    const contentWarning = main.querySelector(".contentWarning");
+    if (contentWarning) {
+      contentWarning.remove();
+    }
   }
 };
 
@@ -143,14 +151,6 @@ const updateCanvas = () => {
   addBooksToCanvas(myLibrary);
 };
 
-addBookToLibrary(
-  "Harry Potter and the Sorcerer's Stone",
-  1997,
-  "J.K. Rowling",
-  432,
-  true
-);
-
 //Find book & edit it
 
 bookTable.addEventListener("change", (e) => {
@@ -161,7 +161,6 @@ bookTable.addEventListener("change", (e) => {
 
     if (bookToEdit !== -1) {
       myLibrary[bookToEdit].read = e.target.checked;
-      updateCanvas();
       checkLibLength();
     }
   }
@@ -184,7 +183,6 @@ bookTable.addEventListener("click", (e) => {
 
     if (bookToRemove !== -1) {
       myLibrary.splice(bookToRemove, 1);
-      updateCanvas();
       checkLibLength();
     }
   }
@@ -242,11 +240,9 @@ btnSubmit.addEventListener("click", (e) => {
       pagesInput.value,
       readInput.checked
     );
+    checkLibLength();
     clearForm();
-    updateCanvas();
     formContainer.classList.add("display-none");
     overlay.classList.add("display-none");
   }
 });
-
-checkLibLength();
