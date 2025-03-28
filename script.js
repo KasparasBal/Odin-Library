@@ -246,3 +246,5 @@ btnSubmit.addEventListener("click", (e) => {
     overlay.classList.add("display-none");
   }
 });
+
+checkLibLength();
